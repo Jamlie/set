@@ -1,16 +1,12 @@
 package set
 
+import "github.com/Jamlie/set/internal"
+
 type setIter[T comparable] struct {
 	internalSet *Set[T]
 }
 
-type (
-	mapIterFn[T comparable]     func(k T) T
-	filterIterFn[T comparable]  func(k T) bool
-	forEachIterFn[T comparable] func(k T)
-)
-
-func (it *setIter[T]) Map(fn mapIterFn[T]) *setIter[T] {
+func (it *setIter[T]) Map(fn internal.MapIterFn[T]) *setIter[T] {
 	newSet := New[T]()
 
 	for k := range it.internalSet.set {
@@ -22,7 +18,7 @@ func (it *setIter[T]) Map(fn mapIterFn[T]) *setIter[T] {
 	return it.internalSet.Iter()
 }
 
-func (it *setIter[T]) Filter(fn filterIterFn[T]) *setIter[T] {
+func (it *setIter[T]) Filter(fn internal.FilterIterFn[T]) *setIter[T] {
 	newSet := New[T]()
 
 	for k := range it.internalSet.set {
@@ -35,7 +31,7 @@ func (it *setIter[T]) Filter(fn filterIterFn[T]) *setIter[T] {
 	return it.internalSet.Iter()
 }
 
-func (it *setIter[T]) ForEach(fn forEachIterFn[T]) {
+func (it *setIter[T]) ForEach(fn internal.ForEachIterFn[T]) {
 	for k := range it.internalSet.set {
 		fn(k)
 	}

@@ -363,6 +363,7 @@ func (s Set[T]) String() string {
 //	}
 func (s *Set[T]) Iter() *setIter[T] {
 	return &setIter[T]{
+		set:         s,
 		internalSet: s,
 	}
 }

@@ -96,9 +96,12 @@ func TestSetMap(t *testing.T) {
 	test.set.Insert(3)
 	test.set.Insert(4)
 
-	test.set = test.set.Iter().Map(func(k int) int {
-		return k * 2
-	}).Collect()
+	test.set.
+		Iter().
+		Map(func(k int) int {
+			return k * 2
+		}).
+		Collect()
 
 	if !sameSlice(test.set.Keys(), test.expect) {
 		t.Fatalf("Expected: %s, Got: %v", test.set, test.expect)
@@ -119,9 +122,12 @@ func TestSetFilter(t *testing.T) {
 	test.set.Insert(3)
 	test.set.Insert(4)
 
-	test.set = test.set.Iter().Filter(func(k int) bool {
-		return k%2 == 1
-	}).Collect()
+	test.set.
+		Iter().
+		Filter(func(k int) bool {
+			return k%2 == 1
+		}).
+		Collect()
 
 	if !sameSlice(test.set.Keys(), test.expect) {
 		t.Fatalf("Expected: %s, Got: %v", test.set, test.expect)

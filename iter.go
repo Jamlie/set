@@ -3,6 +3,7 @@ package set
 import "github.com/Jamlie/set/internal"
 
 type setIter[T comparable] struct {
+	set         *Set[T]
 	internalSet *Set[T]
 }
 
@@ -14,7 +15,7 @@ func (it *setIter[T]) Map(fn internal.MapIterFn[T]) *setIter[T] {
 		newSet.set[newKey] = struct{}{}
 	}
 
-	it.internalSet = newSet
+	it.internalSet.set = newSet.set
 	return it.internalSet.Iter()
 }
 
@@ -27,7 +28,7 @@ func (it *setIter[T]) Filter(fn internal.FilterIterFn[T]) *setIter[T] {
 		}
 	}
 
-	it.internalSet = newSet
+	it.internalSet.set = newSet.set
 	return it.internalSet.Iter()
 }
 
@@ -37,6 +38,6 @@ func (it *setIter[T]) ForEach(fn internal.ForEachIterFn[T]) {
 	}
 }
 
-func (it *setIter[T]) Collect() *Set[T] {
-	return it.internalSet
+func (it *setIter[T]) Collect() {
+	it.set.set = it.internalSet.set
 }

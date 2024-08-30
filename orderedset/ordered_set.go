@@ -56,19 +56,6 @@ import (
 //			newUnique.Clear()
 //		}
 //
-//		uniquePeople = uniquePeople.
-//			Iter().
-//			Map(func(k Person) Person {
-//				return Person{
-//					Id:   k.Id * 3,
-//					Name: k.Name,
-//					Age:  k.Age,
-//				}
-//			}).
-//			Filter(func(k Person) bool {
-//				return k.Id%2 == 1
-//			}).
-//			Collect()
 //		fmt.Println(uniquePeople)
 //	}
 type OrderedSet[T comparable] struct {

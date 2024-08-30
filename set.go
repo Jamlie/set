@@ -60,7 +60,7 @@ import (
 //			newUnique.Clear()
 //		}
 //
-//		uniquePeople = uniquePeople.
+//		uniquePeople.
 //			Iter().
 //			Map(func(k Person) Person {
 //				return Person{

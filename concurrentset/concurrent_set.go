@@ -60,7 +60,7 @@ import (
 //			newUnique.Clear()
 //		}
 //
-//		uniquePeople = uniquePeople.
+//		uniquePeople.
 //			Iter().
 //			Map(func(k Person) Person {
 //				return Person{
@@ -158,6 +158,7 @@ func (s *ConcurrentSet[T]) String() string {
 
 func (s *ConcurrentSet[T]) Iter() *concurrentSetIter[T] {
 	return &concurrentSetIter[T]{
+		set:         s,
 		internalSet: s,
 	}
 }

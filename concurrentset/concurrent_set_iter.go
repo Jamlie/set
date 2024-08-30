@@ -3,6 +3,7 @@ package concurrentset
 import "github.com/Jamlie/set/internal"
 
 type concurrentSetIter[T comparable] struct {
+	set         *ConcurrentSet[T]
 	internalSet *ConcurrentSet[T]
 }
 
@@ -17,7 +18,7 @@ func (it *concurrentSetIter[T]) Map(fn internal.MapIterFn[T]) *concurrentSetIter
 		newSet.set[newKey] = struct{}{}
 	}
 
-	it.internalSet = newSet
+	it.internalSet.set = newSet.set
 	return it.internalSet.Iter()
 }
 
@@ -33,7 +34,7 @@ func (it *concurrentSetIter[T]) Filter(fn internal.FilterIterFn[T]) *concurrentS
 		}
 	}
 
-	it.internalSet = newSet
+	it.internalSet.set = newSet.set
 	return it.internalSet.Iter()
 }
 
@@ -46,6 +47,6 @@ func (it *concurrentSetIter[T]) ForEach(fn internal.ForEachIterFn[T]) {
 	}
 }
 
-func (it *concurrentSetIter[T]) Collect() *ConcurrentSet[T] {
-	return it.internalSet
+func (it *concurrentSetIter[T]) Collect() {
+	it.set.set = it.internalSet.set
 }

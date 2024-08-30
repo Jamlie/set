@@ -484,13 +484,13 @@ func FromSlice[Slice ~[]T, T comparable](v Slice) *OrderedSet[T] {
 //	)
 //
 //	func main() {
-//		arr := map[string]int{
+//		m := map[string]int{
 //			"first":  1,
 //			"second": 2,
 //			"last":   3,
 //		}
 //
-//		v := orderedset.FromMap(arr)
+//		v := orderedset.FromMap(m)
 //
 //		fmt.Println(v)
 //	}

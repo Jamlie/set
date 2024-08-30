@@ -501,13 +501,13 @@ func FromSlice[Slice ~[]T, T comparable](v Slice) *Set[T] {
 //	)
 //
 //	func main() {
-//		arr := map[string]int{
+//		m := map[string]int{
 //			"first":  1,
 //			"second": 2,
 //			"last":   3,
 //		}
 //
-//		v := set.FromMap(arr)
+//		v := set.FromMap(m)
 //
 //		fmt.Println(v)
 //	}

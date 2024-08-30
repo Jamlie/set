@@ -151,7 +151,7 @@ func (s *Set[T]) Insert(k T) {
 
 // Removes a value from the set.
 //
-// Removeing a value that does not exists will resolt in nothing.
+// Removeing a value that does not exists will result in nothing.
 //
 // Examples:
 //
@@ -220,7 +220,7 @@ func (s *Set[T]) Contains(k T) bool {
 	return ok
 }
 
-// Returns a clone of the setA.
+// Returns a clone of the set.
 //
 // Examples:
 //
@@ -263,7 +263,7 @@ func (s *Set[T]) Clone() *Set[T] {
 //		v.Insert(4)
 //		keys := v.Keys()
 //		assert.Assert(len(keys) == 3, "Should have the same elements and the same length")
-//		assert.Equals(sameSlice(keys, []int{2,1,4}), "Should have the same elements and the same length")
+//		assert.Assert(sameSlice(keys, []int{2,1,4}), "Should have the same elements and the same length")
 //	}
 //
 //	// check https://stackoverflow.com/questions/36000487/check-for-equality-on-slices-without-order for source code
@@ -421,7 +421,7 @@ func (s *Set[T]) All() iter.Seq[T] {
 //		newSet := set.New[int]()
 //		newSet.Insert(5)
 //		newSet.Collect(v.All())
-//		log.Println(newSet) // [3,1,2]
+//		log.Println(newSet) // [3 1 2]
 //	}
 func (s *Set[T]) Collect(seq iter.Seq[T]) {
 	newSet := WithCapacity[T](s.Len())
@@ -477,7 +477,7 @@ func (s *Set[T]) InsertSeq(seq iter.Seq[T]) {
 //
 //		fmt.Println(v)
 //	}
-func FromSlice[T comparable](v []T) *Set[T] {
+func FromSlice[Slice ~[]T, T comparable](v Slice) *Set[T] {
 	s := WithCapacity[T](len(v))
 
 	for _, k := range v {
@@ -510,7 +510,7 @@ func FromSlice[T comparable](v []T) *Set[T] {
 //
 //		fmt.Println(v)
 //	}
-func FromMap[K comparable, V any](v map[K]V) *Set[K] {
+func FromMap[Map ~map[K]V, K comparable, V any](v Map) *Set[K] {
 	s := WithCapacity[K](len(v))
 
 	for k := range v {

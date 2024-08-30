@@ -1,4 +1,4 @@
-// Package set provides a generic implementation of a concurrent set.
+// Package concurrentset provides a generic implementation of a thread-safe concurrent set.
 //
 // A Set is a collection of unique elements, implemented using Go's built-in map type.
 // The Set is parameterized with a type T, which must be comparable.
